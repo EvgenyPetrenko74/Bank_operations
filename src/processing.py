@@ -1,6 +1,6 @@
 from typing import Any
 
-original_lists = [
+original_list = [
     {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
     {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
     {"id": 594226727, "state": "CANCELED", "date": "2018-09-12T21:27:25.241689"},
@@ -8,7 +8,7 @@ original_lists = [
 ]
 
 
-def filter_by_state(original_list: list[dict[str, Any]], state_id: str = "EXECUTED") -> Any:
+def filter_by_state(original_list: list[dict[str, Any]], state_id: str = "EXECUTED") -> list[dict[str, Any]]:
     """Функция для фильтрации операций по ключу."""
     sorted_list = []
     for key in original_list:
@@ -17,9 +17,9 @@ def filter_by_state(original_list: list[dict[str, Any]], state_id: str = "EXECUT
     return sorted_list
 
 
-def sort_by_date(original_list: list[dict[str, Any]], reverse_list: bool = True) -> list[dict[str, Any]]:
+def sort_by_date(original_list: list[dict[str, Any]], is_reverse: bool = True) -> list[dict[str, Any]]:
     """Функция сортирует список словарей по убыванию даты."""
-    sorted_list = sorted(original_list, key=lambda d: d["date"], reverse=reverse_list)
+    sorted_list = sorted(original_list, key=lambda d: d["date"], reverse=is_reverse)
     return sorted_list
 
 
