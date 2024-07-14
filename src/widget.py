@@ -18,7 +18,6 @@ def get_data(data: str) -> str:
     d = datetime.strptime(data, format("%Y-%m-%dt%H:%M:%S.%f"))
     return d.strftime("%d.%m.%Y")
 
-
 if __name__ == "__main__":
     print(mask_account_card("Visa platinum 1111222233334444"))
     print(mask_account_card("Счет 11112222333344445555"))
