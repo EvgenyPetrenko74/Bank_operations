@@ -12,7 +12,7 @@ def mask_account_card(string: str) -> str:
         mask_card = string.replace(string[-16:], card)
         return mask_card
 
-fgn
+
 def get_data(data: str) -> str:
     """Функция, которая возвращает строку с датой в требуемом формате."""
     d = datetime.strptime(data, format("%Y-%m-%dt%H:%M:%S.%f"))
