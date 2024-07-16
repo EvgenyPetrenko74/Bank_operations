@@ -5,12 +5,14 @@ from src.masks import get_mask_account, get_mask_card_number
 
 def mask_account_card(string: str) -> str:
     """Функция маскирует номер карты или счета."""
-    if "Счет" in string:
-        return f"Счет {get_mask_account(string)}"
+    if "Счет" or "Счёт" or "счет" or "счёт" in string:
+        account = get_mask_account(string[-20:])
+        mask_account = string.replace(string[-20:], account)
+        return mask_account
     else:
         card = get_mask_card_number(string[-16:])
         mask_card = string.replace(string[-16:], card)
-        return mask_card
+        return card
 
 
 def get_data(data: str) -> str:
