@@ -5,14 +5,22 @@ from src.masks import get_mask_account, get_mask_card_number
 
 def mask_account_card(string: str) -> str:
     """Функция маскирует номер карты или счета."""
-    if "Счет" or "Счёт" or "счет" or "счёт" in string:
+    card_varieties = ["Maestro", "MasterCard", "Visa", "Счет"]
+    find = -1
+    for elem in card_varieties:
+        if string.find(elem) != -1:
+            find = elem
+            break
+    if find == "Счет":
         account = get_mask_account(string[-20:])
         mask_account = string.replace(string[-20:], account)
         return mask_account
+    elif find != -1:
+        card_number = get_mask_card_number(string[-16:])
+        mask_card_number = string.replace(string[-16:], card_number)
+        return mask_card_number
     else:
-        card = get_mask_card_number(string[-16:])
-        mask_card = string.replace(string[-16:], card)
-        return card
+        return "Данные отсутствуют или введены неверно"
 
 
 def get_data(data: str) -> str:
@@ -20,7 +28,8 @@ def get_data(data: str) -> str:
     d = datetime.strptime(data, format("%Y-%m-%dt%H:%M:%S.%f"))
     return d.strftime("%d.%m.%Y")
 
+
 if __name__ == "__main__":
-    print(mask_account_card("Visa platinum 1111222233334444"))
+    print(mask_account_card("Maestro 1111222233334444"))
     print(mask_account_card("Счет 11112222333344445555"))
     print(get_data("2018-07-11T02:26:18.671407"))
