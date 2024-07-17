@@ -7,6 +7,8 @@ def get_mask_card_number(card_number: str) -> str:
     else:
         return " Длина номера не верная или введены посторонние символы"
 
+def funk():
+    pass
 
 def get_mask_account(account_number: str) -> str:
     """Функция, которая маскирует номер счёта"""
