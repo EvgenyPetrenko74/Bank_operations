@@ -8,6 +8,14 @@ def get_mask_card_number(card_number: str) -> str:
         return " Длина номера не верная или введены посторонние символы"
 
 
+def funk():
+    pass
+
+
+def jhv():
+    pass
+
+
 def get_mask_account(account_number: str) -> str:
     """Функция, которая маскирует номер счёта"""
     if len(account_number) == 20 and account_number.isdigit():
