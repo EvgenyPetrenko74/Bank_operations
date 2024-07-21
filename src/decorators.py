@@ -1,7 +1,7 @@
 from functools import wraps
 
 
-def loger(filename):
+def log(filename):
     """Запись вызова функции и ее результата в файл или в консоль"""
 
     def decorator(func):
@@ -10,15 +10,15 @@ def loger(filename):
             try:
                 result = func(*args, **kwargs)
                 if filename:
-                    with open(filename, "w") as file:
+                    with open(filename, "a") as file:
                         file.write(f"{func.__name__} ok\n")
                 else:
                     print(f"{func.__name__} ok")
                 return result
             except Exception as e:
                 if filename:
-                    with open(filename, "w") as file:
-                        file.write(f"{func.__name__} error: {e.__class__.__name__}. Inputs: {args}, {kwargs}")
+                    with open(filename, "a") as file:
+                        file.write(f"{func.__name__} error: {e.__class__.__name__}. Inputs: {args}, {kwargs}\n")
                 else:
                     print(f"{func.__name__} error: {e.__class__.__name__}. Inputs: {args}, {kwargs}")
 
@@ -27,11 +27,11 @@ def loger(filename):
     return decorator
 
 
-@loger(0)
-def my_function(x, y):
-    return (x/y)
+@log(filename="logfile.txt")
+def my_function(x=1, y=0):
+    return x / y
 
 
-my_function(1, 0)
+my_function()
 
 # filename="logfile.txt"
