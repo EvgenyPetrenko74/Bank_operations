@@ -27,7 +27,7 @@ def log(filename):
     return decorator
 
 
-@log(filename="logfile.txt")
+@log(0)
 def my_function(x=1, y=0):
     return x / y
 
