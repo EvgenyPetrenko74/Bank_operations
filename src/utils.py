@@ -6,8 +6,8 @@ def get_info(file_json: str):
         with open(file_json, encoding="utf-8") as f:
             trans = json.load(f)
             return trans
-    except FileNotFoundError as e:
-        return f"Error: {e}"
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
 
 
 result = get_info("../data/operations.json")
